@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+#ignorar
+.node_modules
+.angular
+.vscode
+dist
+
 # User-specific files
 *.rsuser
 *.suo

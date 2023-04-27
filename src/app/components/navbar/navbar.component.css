@@ -1,0 +1,9 @@
+span > [deslogar]{
+    justify-content: right;
+}
+
+.ConteudoSair{
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+}

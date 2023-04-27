@@ -1,0 +1,63 @@
+<div class="ConteudoIcone">
+    <div class="Icone">
+     <fa-icon  [icon] ="faCheck" size="5x"></fa-icon>
+    </div>
+  </div>
+  <div class="ConteudoTitulo">
+    <div class="Titulo">
+      Finalizado
+    </div>
+  </div>
+  <br>
+    <div *ngIf="respostaAPI == false">
+    <table class="table table-striped" style="margin-top: 1.5rem;">
+      <thead style="background-color: #000040; color: white;">
+        <tr>
+        <th class="text-center">Ref</th>
+        <th class="text-center">Visitante</th>
+        <th class="text-center">Transportadora</th>
+        <th class="text-center">Visitado</th>
+        <th class="text-center">Natureza</th>
+        <th class="text-center">Data de Entrada</th>
+        <th class="text-center">Data de Saida</th>
+        <th class="text-center">Hora de Entrada</th>
+        <th class="text-center">Hora de Saida</th>
+        <th class="text-center">Peso de Entrada</th>
+        <th class="text-center">Peso de Saida</th>
+        <th class="text-center">Placa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of EntradaFinalizada">
+        <td scope="row" class="text-center">{{i.referencia}}</td>
+        <td class="text-center">{{i.nomeVisitante}}</td>
+        <td class="text-center">{{i.transportadora}}</td>
+        <td class="text-center">{{i.visitado}}</td>
+        <td class="text-center">{{i.natureza}}</td>
+        <td class="text-center">{{i.dataEntrada}}</td>
+        <td class="text-center">{{i.dataSaida}}</td>
+        <td class="text-center">{{i.horaEntrada}}</td>
+        <td class="text-center">{{i.horaSaida}}</td>
+        <td class="text-center">{{i.pesoEntrada}}</td>
+        <td class="text-center">{{i.pesoSaida}}</td>
+        <td class="text-center">{{i.placaVeiculo}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div msgErro class="alert alert-danger" role="alert" *ngIf="respostaAPI == true">
+  <span style="align-items: center;">Não há dados a exibir</span>
+</div>
+
+  <div class="ConteudoPesquisa">
+    <div class="Pesquisa">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text btn" id="addon-wrapping">Pesquisar</span>
+        <input type="text" class="form-control" placeholder="Digite o dia da movimentação" [(ngModel)]="dataEntrada">
+        <span class="input-group-text btn" id="basic-addon2">Exemplo: dd-mm-aaaa</span>
+      </div>
+      <button class="btn" (click)="pesquisarEntradaFinalizada()" botaoPesquisa>Pesquisar</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="ConteudoIcone">
+  <div class="Icone">
+   <fa-icon [icon] ="faArrowLeft" size="5x"></fa-icon>
+  </div>
+</div>
+<div class="ConteudoTitulo">
+  <div class="Titulo">
+    Saidas
+  </div>
+</div>
+<br>
+<div *ngIf="respostaAPI == false">
+<table class="table table-striped" style="margin-top: 3rem;">
+  <thead style="background-color: #000040; color: white;">
+    <tr>
+      <th class="text-center">Ref</th>
+      <th class="text-center">Visitante</th>
+      <th class="text-center">Transportadora</th>
+      <th class="text-center">Natureza</th>
+      <th class="text-center">Data</th>
+      <th class="text-center">Hora</th>
+      <th class="text-center">Peso</th>
+      <th class="text-center">Id Usuario</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr *ngFor="let i of Saidas">
+        <td scope="row" class="text-center">{{i.referencia}}</td>
+        <td class="text-center">{{i.nomeVisitante}}</td>
+        <td class="text-center">{{i.transportadora}}</td>
+        <td class="text-center">{{i.natureza}}</td>
+        <td class="text-center">{{i.dataSaida}}</td>
+        <td class="text-center">{{i.horaSaida}}</td>
+        <td class="text-center">{{i.pesoSaida}}</td>
+        <td class="text-center">{{i.idUsuario}}</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<div msgErro class="alert alert-danger" role="alert" *ngIf="respostaAPI == true">
+  <span style="align-items: center;">Não há dados a exibir</span>
+</div>
+
+<div class="ConteudoPesquisa">
+  <div class="Pesquisa">
+    <div class="input-group flex-nowrap">
+      <span class="btn input-group-text" id="addon-wrapping">Pesquisar</span>
+      <input type="text" class="form-control" placeholder="Digite o dia da movimentação" [(ngModel)]="dataSaida">
+      <span class="btn input-group-text" id="basic-addon2">Exemplo: dd-mm-aaaa</span>
+    </div>
+    <button class="btn" (click)="pesquisarSaida()" botaoPesquisa>Pesquisar</button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.input-group > span, button{
+    background-color: #000040;
+    color: white;
+    border: none;
+}
+
+[botaoPesquisa]:hover{
+    background-color: #000020;
+    color: white;
+}
