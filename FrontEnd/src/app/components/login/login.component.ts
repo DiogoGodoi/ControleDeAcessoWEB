@@ -1,18 +1,16 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { mdlUsuario } from '../../../../model/mdlUsuario';
 import { ApiService } from 'src/app/services/api.service';
 import { mdlAuthResponse } from '../../../../model/mdlAuthResponse';
 import { Router } from '@angular/router';
-import { faL } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   usuario: mdlUsuario = {nome: "", senha: ""};
   msg?: string;
@@ -20,15 +18,21 @@ export class LoginComponent {
   constructor(private api: ApiService, private auth: AuthService, private router: Router) {
   }
 
+  ngOnInit(): void {
+  }
+
   Logar(): void {
-      this.auth.autenticar(this.usuario).subscribe(dados => {
+
+      this.auth.Logar(this.usuario).subscribe(dados => {
       mdlAuthResponse.token = dados.token.token;
-      mdlAuthResponse.respostaAuth = dados.autenticacao;
-      this.auth.logando.emit(true);
-      this.router.navigate(['entradas'])
+      const token = mdlAuthResponse.token;
+      console.log(token)
+      if(token != null) {
+        console.log(token)
+        this.router.navigate(['home/entradas'])
+      } 
     }, error => {
       this.exibirCaixa = true;
-      this.auth.logando.emit(false);
       this.msg = "Falha no login !!"
     });
     }

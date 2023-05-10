@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { mdlAuthResponse } from 'model/mdlAuthResponse';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,10 +12,9 @@ export class NavbarComponent {
   constructor(private router: Router, private auth: AuthService) {
   }
 
-
   deslogar(): void {
-    this.auth.logando.emit(false);
-    this.router.navigate(['auth']);
+    this.router.navigate(['login'])
+    mdlAuthResponse.token = ""
   }
 
 }

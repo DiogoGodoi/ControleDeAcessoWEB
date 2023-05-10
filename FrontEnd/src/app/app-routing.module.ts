@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { EntradasComponent } from './components/Acessos/entradas/entradas.component';
 import { SaidasComponent } from './components/Acessos/saidas/saidas.component';
-import { EntradaFinalizadaComponent } from './components/Acessos/entrada-finalizada/entrada-finalizada.component';
+import { Guard } from './services/Guard';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-{path: "", redirectTo: "home", pathMatch: "full"},
-{path: "auth", component: LoginComponent},
-{path: "home", component: HomeComponent}, 
-{path: "entradas", component: EntradasComponent},
-{path: "entradaFinalizada", component: EntradaFinalizadaComponent},
-{path: "saidas", component: SaidasComponent}
-];
+{path: "login", component:LoginComponent}, 
+{path: "", redirectTo: "login", pathMatch: "full"},
+{path: "home", redirectTo: "login", pathMatch: "full"},
+{path: "home", component: HomeComponent, canActivate: [Guard], children: [
+  {path: "entradas", component: EntradasComponent},
+  {path: "saidas", component: SaidasComponent},
+  {path: "entradaFinalizada", component: EntradasComponent}]},
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
